@@ -262,11 +262,85 @@
             background: var(--gray);
         }
 
+	.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    align-items: center;
+    gap: 50px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.about-col {
+    display: flex;
+    flex-direction: column;   /* makes images stack vertically */
+    gap: 20px;
+}
+
+.about-col img {
+    width: 220px;
+    height: 260px;
+    object-fit: cover;
+    border-radius: 18px;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+}
+
+/* push images to edges */
+.about-col.left {
+    align-items: flex-end;
+}
+.about-col.right {
+    align-items: flex-start;
+}
+
+/* center text */
+.about-col.center {
+    text-align: center;
+    max-width: 500px;
+    margin: auto;
+}
+
+/* Mobile */
+@media (max-width: 900px) {
+    .about-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .about-col.left,
+    .about-col.right {
+        flex-direction: row;
+        justify-content: center;
+    }
+}
+
+
         .about-content {
             max-width: 800px;
             margin: 0 auto;
             text-align: center;
         }
+
+	.about-container {
+    		display: flex;
+    		align-items: center;
+    		justify-content: center;
+    		gap: 30px;
+    		flex-wrap: wrap;
+		}
+
+	.about-img {
+    		width: 220px;
+    		height: 280px;
+    		object-fit: cover;
+    		border-radius: 15px;
+    		box-shadow: 0 0 20px rgba(0,0,0,0.2);
+		}
+
+	.about-content {
+    max-width: 600px;
+    text-align: center;
+}
+
 
             .about-content p {
                 font-size: 1.5rem;
@@ -322,6 +396,19 @@
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2.5rem;
         }
+	
+	.project-box {
+    		background: white;
+    		padding: 30px;           
+    		border-radius: 15px;    
+    		box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    		transition: 0.3s;
+    		text-align: center;
+    		min-height: 420px;       
+    		display: flex;
+    		flex-direction: column;
+    		justify-content: space-between;
+		}
 
         .project-box {
             position: relative;
@@ -337,11 +424,12 @@
             }
 
             .project-box img {
-                width: 100%;
-                height: 220px;
-                object-fit: cover;
-                transition: 0.5s;
-            }
+    		width: 100%;
+   		height: 220px;      
+   	 	object-fit: cover;
+    		border-radius: 10px;
+		}
+
 
             .project-box:hover img {
                 transform: scale(1.1);
@@ -481,6 +569,23 @@
                 font-size: 1.2rem;
                 color: #666;
             }
+
+
+	.home-img {
+    		width: 260px;
+   		height: 260px;
+    		border-radius: 50%;
+    		object-fit: cover;
+    		border: 6px solid #6c63ff;
+    		box-shadow: 0 0 30px 			rgba(108,99,255,0.6);
+    		animation: float 4s ease-in-out infinite;
+	    }
+
+	@keyframes float {
+    		0%,100% { transform: translateY(0); }
+    		50% { transform: translateY(-15px); }
+	    }
+
 
         footer {
             background: var(--dark);
@@ -640,6 +745,8 @@
     <!-- Home Section -->
     <section class="home" id="home">
         <div class="home-content">
+	     <img src="img.jpg" class="home-img">
+
             <h1>Hi, I'm <span>Vignesh M</span></h1>
             <h3>Web Developer & AI Enthusiast</h3>
             <p>Information Technology student passionate about building innovative web solutions and exploring deep learning technologies. Currently pursuing my degree while working on exciting projects.</p>
@@ -662,11 +769,28 @@
     <section class="about" id="about">
         <h2 class="heading">About <span>Me</span></h2>
 
-        <div class="about-content">
-            <p>I'm a 3rd year Information Technology student with a passion for web development and artificial intelligence. My journey in tech began when I built my first website at 16, and since then I've been constantly learning and expanding my skills.</p>
-            <p>I specialize in creating responsive, user-friendly web applications using modern technologies like React, Node.js, and MongoDB. My interest in AI has led me to explore machine learning frameworks like TensorFlow and PyTorch.</p>
-            <p>When I'm not coding, you can find me contributing to open-source projects, participating in hackathons, or exploring the latest advancements in deep learning. I'm currently seeking internship opportunities to apply my skills and learn from industry professionals while completing my degree.</p>
-        </div>
+        <div class="about-grid">
+
+    <div class="about-col left">
+        <img src="./about-left.jpeg">
+	<img src="./about1.jpeg">
+    </div>
+
+    <div class="about-col center">
+        <p>I'm a 3rd year Information Technology student with a passion for web development and artificial intelligence.</p>
+        <p>I specialize in creating responsive, user-friendly web applications using modern technologies. </p>
+        <p>When I'm not coding, I enjoy contributing to open-source projects and participating in hackathons.</p>
+	<p>I like to travel and explore things that i have not seen before and enjoy even the smallest moments in life.</p>
+
+    </div>
+
+    <div class="about-col right">
+        <img src="./about-right.jpeg">
+	<img src="./about2.jpeg">
+    </div>
+
+</div>
+
     </section>
 
     <!-- Skills Section -->
@@ -704,23 +828,17 @@
                 <div class="project-layer">
                     <h4>Tic Tac Toe Game</h4>
                     <p>A fully functional Tic Tac Toe game built with HTML, CSS, and JavaScript with responsive design and win logic.</p>
-                    <div class="project-links">
-                        <a href="https://github.com/vigneshm-6/tic-tac-toe" target="_blank"><i class="fab fa-github"></i></a>
-                        <a href="https://vigneshm-6.github.io/tic-tac-toe/" target="_blank"><i class="fas fa-external-link-alt"></i></a>
                     </div>
-                </div>
             </div>
 
-            <div class="project-box coming-soon">
+            <div class="project-box">
                 <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80" alt="Coming Soon">
                 <div class="project-layer">
-                    <h4>Project Coming Soon</h4>
-                    <p>I'm currently working on my next exciting project. Stay tuned for updates!</p>
-                    <div class="project-links">
-                        <a href="#"><i class="fas fa-hourglass-half"></i></a>
-                    </div>
-                </div>
-                <div class="coming-soon-badge">Coming Soon</div>
+                    <h4>Hospital Management System</h4>
+                    <p>A web-based system that manages patient records, doctor details, appointments, and billing. 
+        		Built to reduce paperwork and improve hospital efficiency.</p>
+                 </div>
+                <div class="coming-soon-badge"></div>
             </div>
 
             <div class="project-box coming-soon">
@@ -728,11 +846,8 @@
                 <div class="project-layer">
                     <h4>Project Coming Soon</h4>
                     <p>Another amazing project is in development. Check back later!</p>
-                    <div class="project-links">
-                        <a href="#"><i class="fas fa-hourglass-half"></i></a>
-                    </div>
                 </div>
-                <div class="coming-soon-badge">Coming Soon</div>
+                <div class="coming-soon-badge"></div>
             </div>
         </div>
     </section>
